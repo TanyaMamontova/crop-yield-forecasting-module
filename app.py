@@ -75,7 +75,7 @@ class SettingsForm(FlaskForm):
 def settings():
     form = SettingsForm()
     if form.validate_on_submit():
-        # Проверка текущего пароля (без хэширования)
+        # Проверка текущего пароля
         if form.current_password.data != current_user.password:
             flash('Неверный текущий пароль', 'error')
             return redirect(url_for('settings'))
@@ -100,7 +100,7 @@ def load_user(user_id):
 
 
 
-# Полные данные урожайности (2000-2022 + прогноз до 2028)
+# Полные данные урожайности (2000-2024 + прогноз на 2025-2026 по подсолнечнику, картофелю и сахарной свекле)
 crop_data = {
     "Горох": {
         2000: 13.6, 2001: 22.8, 2002: 19.6, 2003: 9.7, 2004: 23.3,
@@ -494,3 +494,4 @@ if __name__ == '__main__':
     with app.app_context():
         db.create_all()
     app.run(debug=True)
+
